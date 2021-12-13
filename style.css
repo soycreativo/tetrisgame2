@@ -1,0 +1,49 @@
+#game-canvas{
+    height: 600px;
+    margin-right: 0px;
+    margin-left: 400px;
+}
+
+#scoreboard{
+    height: 50px;
+    margin-right: 0px;
+    margin-left: 400px;
+    padding: 8px;
+    width: 25%;
+    background-color: blueviolet;
+}
+
+#arriba{
+    height: 50px;
+    margin-right: 0px;
+    margin-left: 440px;
+    width: 50px;
+    background-image: url(Flecha\ arriba.jpg);
+}
+
+#derecha{
+    height: 50px;
+    margin-right: 0px;
+    margin-left: 400px;
+    width: 50px;
+    background-image: url(Flecha\ derecha.jpg);
+}
+
+#izquierda{
+    height: 50px;
+    margin-right: 0px;
+    margin-left:20px;
+    width: 50px;
+    background-image: url(Flecha\ izquierda.jpg);
+}
+
+#abajo{
+    height: 50px;
+    margin-right: 0px;
+    margin-left:440px;
+    width: 50px;
+    background-image: url(Flecha\ abajo.jpg);
+}
+
+
+
