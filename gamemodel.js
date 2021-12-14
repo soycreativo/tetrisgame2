@@ -1,10 +1,12 @@
-class GameModel{
-    constructor (ctx){
+class GameModel {
+    //Object constructor
+    constructor(ctx) {
         this.ctx = ctx;
         this.fallingPiece = null;
         this.grid = this.makeStartingGrid();
+        
     }
-
+    //It Create the main Array
     makeStartingGrid(){
         let grid = [];
         for (var i = 0; i < ROWS; i++) {
@@ -15,7 +17,7 @@ class GameModel{
         }
         return grid;
     }
-
+    // Detect collision
     collision(x, y){
         const shape = this.fallingPiece.shape
         const n = shape.length
@@ -37,23 +39,39 @@ class GameModel{
         }
         return false
     }
-
+    //It Draw the canvas using the array saved on grid
     renderGameState() {
         for (let i = 0; i < this.grid.length; i++) {
             for (let j = 0; j < this.grid[i].length; j++){
                 let cell = this.grid[i][j]
-                this.ctx.fillStyle = COLORS[cell]
-                this.ctx.fillRect(j, i, 1, 1)
+                
+                this.ctx.beginPath();
+                this.ctx.arc(j + 0.5, i +0.5, 0.425, 0, 2 * Math.PI);
+                this.ctx.fillStyle = COLORS[cell];
+                this.ctx.fill();
             }
         }
 
         if (this.fallingPiece !== null){
             this.fallingPiece.renderPiece()
         }
-     }
+    }
+    // Sound function
+    soundkey() {
+        const GAMEPRESS = new Audio();
+        GAMEPRESS.src = "./game-press.wav"
+        GAMEPRESS.play();
+    }
+    bonus() {
+        const BONUS_SOUND = new Audio();
+        BONUS_SOUND.src = "./bonus.wav"
+        BONUS_SOUND.play();
+    }
 
+    
 
-    moveDown() {  
+    //Call function for draw the canvas backgroun and the tetromino piece
+    moveDown() {
         if (this.fallingPiece === null) {
             this.renderGameState()
             return
@@ -70,7 +88,6 @@ class GameModel{
                     }
                 })
             })
-
             // check game over
             if (this.fallingPiece.y === 0) {
                 alert("Game over!")
@@ -81,16 +98,17 @@ class GameModel{
             this.fallingPiece.y +=1
         }
         this.renderGameState()
-    }
 
+    }
+    //Move the tetromino to left or right
     move(right) {
-        if (this.fallingPiece === null){
+        if (this.fallingPiece === null) {
             return
         }
-
+        
         let x = this.fallingPiece.x
         let y = this.fallingPiece.y
-        if(right){
+        if (right) {
             //move right
             if (!this.collision(x + 1, y)) {
                 this.fallingPiece.x += 1
@@ -102,57 +120,31 @@ class GameModel{
             }
         }
         this.renderGameState()
+        
     }
-
-rotate() {
+    // Rotate the fallingPiece
+    rotate() {
         if (this.fallingPiece !== null) {
-            let shape = this.fallingPiece.shape
+            let shape = [...this.fallingPiece.shape.map((row) => [...row])]
             // transpose of matrix 
             for (let y = 0; y < shape.length; ++y) {
                 for (let x = 0; x < y; ++x) {
-                    [this.fallingPiece.shape[x][y], this.fallingPiece.shape[y][x]] = 
-                    [this.fallingPiece.shape[y][x], this.fallingPiece.shape[x][y]]
+                    [shape[x][y], shape[y][x]] = 
+                    [shape[y][x], shape[x][y]]
                 }
             }
-
-            // Reverse order of rows
-            this.fallingPiece.shape.forEach((row => row.reverse()))
-        }
-        this.renderGameState()
-    }
-
-    move2(right){
-        if(this.fallingPiece === null){
-            return
-        }
-
-        let x = this.fallingPiece.x
-        let y = this.fallingPiece.y
-        if (right){
-
-            if(!this.collision(x - 1, y)){
-                this.fallingPiece.x -= 1
-            }
-        }else{
-
-            if (this.collision(x +1, y)){
-                this.fallingPiece.x += 1
+            // reverse order of rows 
+            shape.forEach((row => row.reverse()))
+            if (!this.collision(this.fallingPiece.x, this.fallingPiece.y, shape)) {
+                this.fallingPiece.shape = shape
             }
         }
         this.renderGameState()
     }
 
-    rotate(){
-        if(this.fallingPiece !== null){
-        let shape = this.fallingPiece.shape
-        for (let y = 0; y < shape.length; ++y){
-            for(let x = 0; x < y; ++x){
-                [this.fallingPiece.shape[x][y], this.fallingPiece.shape[y][x]] =
-                [this.fallingPiece.shape[y][x], this.fallingPiece.shape[x][y]]
-            }
-        }
-        this.fallingPiece.shape.forEach((row => row.reverse()))
-        }
-        this.renderGameState()
-    }
+    
 }
+
+
+
+
