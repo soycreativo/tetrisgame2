@@ -14,14 +14,16 @@
         <div>
             <canvas id="canvas" width="300" height="600"></canvas>
         </div>
+    
+        <div class="contenedor">
+            <button id="arriba" onclick="model.rotate()"></button>
+            <div class="filas">
+                <button id="izquierda" onclick="model.move(false)"></button>
+                <button id="derecha" onclick="model.move(true)"></button>
+            </div>
+            <button id="abajo" onclick="model.moveDown()"></button>
+        </div>
     </div>
-
-	<div class="contenedor"><button id="arriba" onclick="model.rotate()"></button>
-	<div class="filas">
-	<button id="derecha" onclick="model.move(false)"></button>
-	<button id="izquierda" onclick="model.move(true)"></button></div>
-	<button id="abajo" onclick="model.moveDown()"></button>
-
 
 <script src="./constants.js" type=text/javascript></script>
 <script src="./gamemodel.js" type=text/javascript></script>

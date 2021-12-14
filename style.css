@@ -10,11 +10,19 @@ body {
 h2 {
     font: 2em sans-serif;
     color: aliceblue;
+    text-align: center;
+    align-self: center;
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+    
 }
 #canvas-container {
     display: flex;
     width: 100%;
-    
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -23,8 +31,6 @@ h2 {
 
 #score-board{
     height: 50px;
-    margin-right: 0px;
-    margin-left: 400px;
     padding: 8px;
     width: 25%;
     background-color: blueviolet;
@@ -32,34 +38,32 @@ h2 {
 
 #arriba{
     height: 50px;
-    margin-right: 0px;
-    margin-left: 440px;
     width: 50px;
-    background-image: url(Flecha-arriba.jpg);
+    background-image: url(Flecha-arriba.svg);
+    align-self: center;
+    background-color: #0E1A40;
 }
 
 #derecha{
     height: 50px;
-    margin-right: 0px;
-    margin-left: 400px;
     width: 50px;
-    background-image: url(Flecha-derecha.jpg);
+    background-image: url(Flecha-derecha.svg);
+    background-color: #0E1A40;
 }
 
 #izquierda{
     height: 50px;
-    margin-right: 0px;
-    margin-left:20px;
     width: 50px;
-    background-image: url(Flecha-izquierda.jpg);
+    background-image: url(Flecha-izquierda.svg);
+    background-color: #0E1A40;
 }
 
 #abajo{
     height: 50px;
-    margin-right: 0px;
-    margin-left:440px;
     width: 50px;
-    background-image: url(Flecha-abajo.jpg);
+    background-image: url(Flecha-abajo.svg);
+    align-self: center;
+    background-color: #0E1A40;
 }
 
 
